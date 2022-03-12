@@ -1,5 +1,6 @@
 package lab1_1.tqsStack;
 
+import java.util.NoSuchElementException;
 import java.util.Stack;
 
 public class TqsStack {
@@ -19,11 +20,15 @@ public class TqsStack {
 
     //returns 1st element and removes it
     public Integer pop(){
+        if (this.isEmpty())
+            throw new NoSuchElementException();
         return s.pop();
     }
 
     //returns 1st element
     public Integer peek(){
+        if (this.isEmpty())
+            throw new NoSuchElementException();
         return s.peek();
     }
 

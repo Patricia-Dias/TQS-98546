@@ -3,7 +3,6 @@ package lab1_1.tqsStack;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.NoSuchElementException;
 
@@ -15,22 +14,22 @@ import org.junit.jupiter.api.DisplayName;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class TqsStackTest 
 {
     private static int CAPACITY = 10;
-    private TqsStack stack;
+    private TqsStack stack = new TqsStack();
     private TqsStack boundedStack;
     /**
      * Rigorous Test :-)
      */
-    @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
-    }
+    // @Test
+    // public void shouldAnswerWithTrue()
+    // {
+    //     assertTrue( true );
+    // }
     @BeforeEach
-    private void innit(){
-        stack = new TqsStack();
+    void innit(){
+        this.stack = new TqsStack();
     }
 
     @Test
@@ -85,16 +84,18 @@ public class AppTest
         assertTrue(stack.isEmpty());
     }
 
-    @Test
+    @Test(expected = NoSuchElementException.class)
     @DisplayName("Popping from an empty stack does throw a NoSuchElementException")
     public void testG(){
-        assertEquals(NoSuchElementException.class, stack.pop());
+        assertTrue(stack.isEmpty());
+        stack.pop();
     }
 
-    @Test
+    @Test(expected = NoSuchElementException.class)
     @DisplayName("Peeking into an empty stack does throw a NoSuchElementException")
     public void testH(){
-        assertEquals(NoSuchElementException.class, stack.peek());
+        assertTrue(stack.isEmpty());
+        stack.peek();
     }
 
     @Before
