@@ -13,3 +13,6 @@ mvn archetype:generate -DgroupId=lab1_1.tqsStack
         <scope>test</scope>
     </dependency>
 ```
+* run maven project " $mvn install $mvn exec:java -Dexec:mainClass='lab1_1.tqsStack.App' "
+## Perguntar ao stor como correr testes no terminal
+correr testes = "$mvn test"
