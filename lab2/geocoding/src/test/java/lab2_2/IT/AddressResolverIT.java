@@ -38,7 +38,7 @@ public class AddressResolverIT {
     @Test
     public void whenBadCoordinates_throwException() throws IOException, URISyntaxException, org.json.simple.parser.ParseException{
         
-        assertThrows( IndexOutOfBoundsException.class, () -> {
+        assertThrows( NullPointerException.class, () -> {
             addresolver.findAddressForLocation(120,-600);
         });
     }

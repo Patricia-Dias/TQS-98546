@@ -56,11 +56,8 @@ public class GeocodingTest
         Mockito.when(httpClient.doHttpGet(contains("location=120.000000%2C-600.000000"))).thenReturn(json);
 
         //expected 120.000000, -600.000000
-        Optional<Address> expected;
-        expected = addresolver.findAddressForLocation(120,-600);
+        //Optional<Address> expected = addresolver.findAddressForLocation(120,-600);
         
-        assertThrows( IndexOutOfBoundsException.class, () -> {
-            addresolver.findAddressForLocation(120,-600);
-        });
+        assertEquals( Optional.empty(), addresolver.findAddressForLocation(120,-600));
     }
 }
