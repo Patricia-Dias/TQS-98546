@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: lab4_1.helloworld.HelloWorldChromeJupiterTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.287 s - in lab4_1.helloworld.HelloWorldChromeJupiterTest
