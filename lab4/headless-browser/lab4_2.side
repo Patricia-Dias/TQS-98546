@@ -1,0 +1,207 @@
+{
+  "id": "cda9c997-0d43-4482-94a9-52051d48be88",
+  "version": "2.0",
+  "name": "lab4_2",
+  "url": "https://blazedemo.com",
+  "tests": [{
+    "id": "0c768efb-4302-410b-89ba-8e60e15a9b7f",
+    "name": "lab4_2",
+    "commands": [{
+      "id": "fec7f5a2-4e5b-4a2a-9011-0d65f1e87f7e",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5f3bf4ee-1bd5-40a5-98ef-eba3db64dbec",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1010x1057",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6bbd1237-ebbf-4791-90c0-820a68fa4c93",
+      "comment": "",
+      "command": "select",
+      "target": "name=fromPort",
+      "targets": [],
+      "value": "label=Portland"
+    }, {
+      "id": "9c1080e6-cb2e-4428-8ff9-e2765ee40325",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "name=fromPort",
+      "targets": [
+        ["name=fromPort", "name"],
+        ["css=.form-inline:nth-child(1)", "css:finder"],
+        ["xpath=//select[@name='fromPort']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "0,0"
+    }, {
+      "id": "335e2c12-edb0-4cad-919b-653dc2cfc424",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "name=fromPort",
+      "targets": [
+        ["name=fromPort", "name"],
+        ["css=.form-inline:nth-child(1)", "css:finder"],
+        ["xpath=//select[@name='fromPort']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "0,0"
+    }, {
+      "id": "bb7fc035-ee58-4776-8f41-27ee2cfea1d7",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "name=fromPort",
+      "targets": [
+        ["name=fromPort", "name"],
+        ["css=.form-inline:nth-child(1)", "css:finder"],
+        ["xpath=//select[@name='fromPort']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "0,0"
+    }, {
+      "id": "03c09552-071d-403c-87ab-d3fb9d03d343",
+      "comment": "",
+      "command": "select",
+      "target": "name=toPort",
+      "targets": [],
+      "value": "label=Berlin"
+    }, {
+      "id": "5679dc57-66e6-4d1d-9a8b-1e5d846b4dd3",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "name=toPort",
+      "targets": [
+        ["name=toPort", "name"],
+        ["css=.form-inline:nth-child(4)", "css:finder"],
+        ["xpath=//select[@name='toPort']", "xpath:attributes"],
+        ["xpath=//select[2]", "xpath:position"]
+      ],
+      "value": "0,0"
+    }, {
+      "id": "d86e01cd-3c51-4186-a63b-5373304b50fd",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "name=toPort",
+      "targets": [
+        ["name=toPort", "name"],
+        ["css=.form-inline:nth-child(4)", "css:finder"],
+        ["xpath=//select[@name='toPort']", "xpath:attributes"],
+        ["xpath=//select[2]", "xpath:position"]
+      ],
+      "value": "0,0"
+    }, {
+      "id": "1627256d-1e31-4445-8a83-27f441a7db1f",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "name=toPort",
+      "targets": [
+        ["name=toPort", "name"],
+        ["css=.form-inline:nth-child(4)", "css:finder"],
+        ["xpath=//select[@name='toPort']", "xpath:attributes"],
+        ["xpath=//select[2]", "xpath:position"]
+      ],
+      "value": "0,0"
+    }, {
+      "id": "5b4ad36d-5c44-4612-ba01-a1bcc9d9016f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container:nth-child(3)",
+      "targets": [
+        ["css=.container:nth-child(3)", "css:finder"],
+        ["xpath=//div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d14540c7-f24a-45ee-ab45-494db35118a1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//input[@value='Find Flights']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "301bd1bd-7168-40c3-ab9a-815a05a2472d",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) .btn",
+      "targets": [
+        ["css=tr:nth-child(2) .btn", "css:finder"],
+        ["xpath=(//input[@value='Choose This Flight'])[2]", "xpath:attributes"],
+        ["xpath=//tr[2]/td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b114a834-84a6-4b1b-8392-9aa8039a1594",
+      "comment": "",
+      "command": "click",
+      "target": "id=inputName",
+      "targets": [
+        ["id=inputName", "id"],
+        ["name=inputName", "name"],
+        ["css=#inputName", "css:finder"],
+        ["xpath=//input[@id='inputName']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c0d5d37-28d7-424b-8cb8-226ffe21b567",
+      "comment": "",
+      "command": "type",
+      "target": "id=inputName",
+      "targets": [
+        ["id=inputName", "id"],
+        ["name=inputName", "name"],
+        ["css=#inputName", "css:finder"],
+        ["xpath=//input[@id='inputName']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "zdxfcv"
+    }, {
+      "id": "38a7dc3e-331f-43e5-afa6-fc06b279f002",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container:nth-child(2)",
+      "targets": [
+        ["css=.container:nth-child(2)", "css:finder"],
+        ["xpath=//div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "10d78b79-752c-48c2-9f5d-fd9912d73eb8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//input[@value='Purchase Flight']", "xpath:attributes"],
+        ["xpath=//div[11]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1375759f-d292-4d67-966b-d5c9a401d6ec",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "5594e348-ee95-4bd7-af7a-a128144be949",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["0c768efb-4302-410b-89ba-8e60e15a9b7f"]
+  }],
+  "urls": ["https://blazedemo.com/"],
+  "plugins": []
+}

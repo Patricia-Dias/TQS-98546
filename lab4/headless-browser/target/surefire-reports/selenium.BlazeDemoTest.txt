@@ -1,0 +1,15 @@
+-------------------------------------------------------------------------------
+Test set: selenium.BlazeDemoTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.885 s <<< FAILURE! - in selenium.BlazeDemoTest
+lab4_2  Time elapsed: 2.873 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+Unable to locate element using css
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.52.0', revision: '4c2593cfc3689a7fcd7be52549167e5ccc93ad28', time: '2016-02-11 11:22:43'
+System info: host: 'pmd', ip: '192.168.1.70', os.name: 'Linux', os.arch: 'amd64', os.version: '5.4.0-107-generic', java.version: '11.0.14.1'
+Driver info: driver.version: HtmlUnitDriver
+	at selenium.BlazeDemoTest.lab4_2(BlazeDemoTest.java:38)
+Caused by: org.w3c.css.sac.CSSException: Invalid selector: tr:nth-child(2) *.btn
+	at selenium.BlazeDemoTest.lab4_2(BlazeDemoTest.java:38)
+
