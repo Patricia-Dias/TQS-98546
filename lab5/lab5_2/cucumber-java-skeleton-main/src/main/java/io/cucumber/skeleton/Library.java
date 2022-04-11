@@ -9,6 +9,8 @@ import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.cucumber.skeleton.Book;
+
 public class Library {
     private final List<Book> store = new ArrayList<>();
  
@@ -40,9 +42,21 @@ public class Library {
 
     public List<Book> findBooksByCategory(String category) {
         List<Book> res = new ArrayList<>();
-        for (Book b : store)
-			if (b.getCategory().equals(category))
+        for (Book b : store){
+			System.out.println(b.getCategory() +" \t equals? \t"+category);
+			System.out.println(b.getCategory().equalsIgnoreCase(category));
+			if (b.getCategory().equalsIgnoreCase(category))
 				res.add(b);
+		}
 		return res;
     }
+
+	@Override
+	public String toString(){
+		String res = "";
+		for (Book book : this.store){
+			res += book.getTitle()+"\t";
+		}
+		return res;
+	}
 }

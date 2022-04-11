@@ -10,10 +10,10 @@ public class Book {
 	private String category;
 
 	public Book(String title, String author, LocalDateTime published2, String category){
-		title = this.title;
-		author = this.author;
-		published2 = this.published;
-		category = this.category;
+		this.title = title;
+		this.author = author;
+		this.published = published2;
+		this.category = category;
 	}
 
 	public LocalDateTime getPublished() {

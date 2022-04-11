@@ -28,9 +28,14 @@ public class BookSearchSteps {
 		library.addBook(book);
 	}
  
-	@When("the customer searches for books published between {iso8601Date} and {iso8601Date}")
-	public void setSearchParameters(final LocalDateTime from, final LocalDateTime to) {
-		result = library.findBooks(from, to);
+	@When("the customer searches for books published between {int} and {int}")
+	public void setSearchParameters(final int from, final int to) {
+		LocalDateTime fromLocalDate = LocalDateTime.of(from, 1, 1, 00, 00);
+		LocalDateTime toLocalDate = LocalDateTime.of(to, 12, 31, 23, 59);
+		// System.out.println(library);  
+		result = library.findBooks(fromLocalDate, toLocalDate);
+		// System.out.println(result.isEmpty()+"\t\t HERRREEEEE");
+		
 	}
  
 	@Then("{int} books should have been found")
@@ -48,12 +53,15 @@ public class BookSearchSteps {
 	@When("the costumer searches for books written by {string}")
 	public void the_costumer_searches_for_books_written_by(String author) {
 		// Write code here that turns the phrase above into concrete actions
+		// System.out.println(library);
 		result = library.findBooksByAuthor(author);
 	}
 
 	@When("the costumer searches for books by category {string}")
 	public void the_costumer_searches_for_books_with_category(String category) {
 		// Write code here that turns the phrase above into concrete actions
+		System.out.println(library);
     	result = library.findBooksByCategory(category);
+		System.out.println(result.size());
 	}
 }
