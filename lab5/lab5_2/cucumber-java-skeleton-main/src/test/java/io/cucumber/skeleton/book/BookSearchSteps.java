@@ -1,4 +1,4 @@
-package io.cucumber.skeleton;
+package io.cucumber.skeleton.book;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

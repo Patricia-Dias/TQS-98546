@@ -1,4 +1,4 @@
-package io.cucumber.skeleton;
+package io.cucumber.skeleton.book;
 
 import java.time.LocalDateTime;
 

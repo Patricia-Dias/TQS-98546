@@ -1,4 +1,4 @@
-package io.cucumber.skeleton;
+package io.cucumber.skeleton.book;
 
 import java.util.ArrayList;
 import java.util.Calendar;
