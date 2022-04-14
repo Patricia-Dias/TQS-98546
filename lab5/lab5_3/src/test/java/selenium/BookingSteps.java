@@ -30,12 +30,10 @@ public class BookingSteps {
 
   @And("I select a flight from {string} to {string}")
   public void selectFlightCities(String from, String to) {
-    driver.findElement(By.name("fromPort")).click();
     {
       WebElement dropdown = driver.findElement(By.name("fromPort"));
-      dropdown.findElement(By.xpath(String.format("//option[. = Boston]"))).click();
+      dropdown.findElement(By.xpath(String.format("//option[. = %s]", from))).click();
     }
-    driver.findElement(By.name("toPort")).click();
     {
       WebElement dropdown = driver.findElement(By.name("toPort"));
       dropdown.findElement(By.xpath(String.format("//option[. = %s]", to))).click();
