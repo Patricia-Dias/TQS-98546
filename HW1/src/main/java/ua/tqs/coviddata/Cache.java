@@ -46,7 +46,7 @@ public class Cache {
 		cache.put(key, value);
 		cacheItemsLife.put(key, System.currentTimeMillis());
 	}
- 
+	//new comment just cuz
 	public ResponseEntity<String> get(URI key) {
 		ResponseEntity<String> value = cache.get(key);
 		requests++;
