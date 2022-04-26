@@ -106,16 +106,7 @@ public class CovidDataService {
         return cashedResponse;
     }
 
-    public ResponseEntity<String> getCacheInfo() {
-        String res = String.format("{\n" +
-        "\t\"ttl\": %d,\n" +
-        "\t\"statistics\": {\n" +
-        "\t\t\"requests\": %d,\n"+
-        "\t\t\"hits\": %d,\n" +
-        "\t\t\"misses\": %d,\n" +
-        "\t\"size\": %d\n" +
-        "\t}\n" +
-        "}", cache.getTTL(), cache.getRequests(),cache.getHits(), cache.getMisses(), cache.size());
-        return new ResponseEntity<>(res, HttpStatus.OK);
+    public ResponseEntity<Cache> getCacheInfo() {
+        return new ResponseEntity<>(this.cache, HttpStatus.OK);
     }
 }

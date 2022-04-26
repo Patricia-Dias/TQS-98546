@@ -2,7 +2,6 @@ package ua.tqs.coviddata;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.net.URI;
 
@@ -40,10 +39,10 @@ class CacheTests {
 	@Test
 	void InitializingCacheTest() {
 		assertEquals(ttl*1000, cache.getTTL());
-		assertTrue(cache.isEmpty());
-		assertEquals(0, cache.getRequests());
-		assertEquals(0, cache.getHits());
-		assertEquals(0, cache.getMisses());
+		assertThat(cache.getSize(), is(0));
+		assertThat(cache.getRequests(), is(0));
+		assertEquals(cache.getHits(), is(0));
+		assertEquals(cache.getMisses(), is(0));
 	}
 
 	@DisplayName("Adding and removing elements from cache")
@@ -51,12 +50,12 @@ class CacheTests {
 	void AddAndRemoveElementFromCacheTest(){
 		cache.put(test_uri1, test_respEntity1);
 		cache.put(test_uri2, test_respEntity2);
-		assertThat(cache.size(), is(2));
-		assertThat(cache.getCacheItemsLife().size(), is(2));
+		assertThat(cache.getSize(), is(2));
+		assertThat(cache.cacheItemsLife().size(), is(2));
 
 		cache.remove(test_uri1);
-		assertThat(cache.size(), is(1));
-		assertThat(cache.getCacheItemsLife().size(), is(1));
+		assertThat(cache.getSize(), is(1));
+		assertThat(cache.cacheItemsLife().size(), is(1));
 	}
 
 	@DisplayName("Accessing available element from cache")
@@ -86,12 +85,12 @@ class CacheTests {
 		newCache.put(test_uri1, test_respEntity1);
 		newCache.get(test_uri1);
 
-		assertThat(newCache.size(), is(1));
+		assertThat(newCache.getSize(), is(1));
 		assertThat(newCache.getRequests(), is(1));
 
 		wait(2000);
 
-		assertThat(newCache.size(), is(0));
+		assertThat(newCache.getSize(), is(0));
 		assertThat(newCache.getRequests(), is(1));
 
 	}

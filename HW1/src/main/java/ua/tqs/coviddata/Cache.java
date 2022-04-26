@@ -46,7 +46,7 @@ public class Cache {
 		cache.put(key, value);
 		cacheItemsLife.put(key, System.currentTimeMillis());
 	}
-	//new comment just cuz
+	
 	public ResponseEntity<String> get(URI key) {
 		ResponseEntity<String> value = cache.get(key);
 		requests++;
@@ -66,17 +66,9 @@ public class Cache {
 		logger.info("removed key:\t"+key);
 		cache.remove(key);
 		cacheItemsLife.remove(key);
-		logger.info("Cashe size after cleanup\t"+size());
+		logger.info("Cashe size after cleanup\t"+getSize());
 	}
  
-	public int size() {
-		if (cache.size()!=cacheItemsLife.size()){
-			logger.severe("ALERT: The cache map and cacheItemsLife map should have the same size.");
-		}
-		return cache.size();
-	}
-
-	//used with testing
 	public void emptyCache(){
 		this.cache.clear();
 		this.cacheItemsLife.clear();
@@ -86,8 +78,6 @@ public class Cache {
 	}
 
 	public void cleanCashe(){
-		// int elements_cleared = cache.size();
-		// cache.clear();
 		logger.info("cleanCashe was called");
 		long now = System.currentTimeMillis();
 		
@@ -99,12 +89,12 @@ public class Cache {
 		}
 	}
 
-	public HashMap<URI, Long> getCacheItemsLife(){
+	public HashMap<URI, Long> cacheItemsLife(){
 		return this.cacheItemsLife;
 	}
 
-	public boolean isEmpty(){
-		return cache.isEmpty() && cacheItemsLife.isEmpty();
+	public long getTTL(){
+		return timeToLive;
 	}
 
 	public int getRequests(){
@@ -119,8 +109,11 @@ public class Cache {
 		return misses;
 	}
 
-	public long getTTL(){
-		return timeToLive;
+	public int getSize(){
+		if (cache.size()!=cacheItemsLife.size()){
+			logger.severe("ALERT: The cache map and cacheItemsLife map should have the same size.");
+		}
+		return this.cache.size();
 	}
 
 }

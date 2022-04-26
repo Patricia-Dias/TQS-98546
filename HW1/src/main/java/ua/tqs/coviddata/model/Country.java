@@ -1,16 +1,21 @@
 package ua.tqs.coviddata.model;
 
-public class Country extends Continent {
+public class Country {
     private String country;
     private int population;
     private Cases cases;
+    private String continent;
 
 
     public Country(String continent, String country, int population, Cases cases) {
-        super(continent);
+        this.continent = continent;
         this.country = country;
         this.population = population;
         this.cases = cases;
+    }
+
+    public String getContinent(){
+        return this.continent;
     }
     
     public String getCountry(){

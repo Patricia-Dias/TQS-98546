@@ -31,7 +31,7 @@ public class CovidDataController {
     }
 
     @GetMapping("/cache")
-    public ResponseEntity<String> getCacheInfo(){
+    public ResponseEntity<Cache> getCacheInfo(){
         return service.getCacheInfo();
     }
     
