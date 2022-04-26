@@ -41,8 +41,8 @@ class CacheTests {
 		assertEquals(ttl*1000, cache.getTTL());
 		assertThat(cache.getSize(), is(0));
 		assertThat(cache.getRequests(), is(0));
-		assertEquals(cache.getHits(), is(0));
-		assertEquals(cache.getMisses(), is(0));
+		assertThat(cache.getHits(), is(0));
+		assertThat(cache.getMisses(), is(0));
 	}
 
 	@DisplayName("Adding and removing elements from cache")
