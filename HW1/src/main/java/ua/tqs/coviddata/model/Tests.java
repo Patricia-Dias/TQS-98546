@@ -1,19 +1,13 @@
 package ua.tqs.coviddata.model;
 
-public class Deaths {
-    private int newDeaths;
+public class Tests {
     private int perMillion;
     private int total;
 
 
-    public Deaths(int newDeaths, int perMillion, int total) {
-        this.newDeaths = newDeaths;
+    public Tests(int perMillion, int total) {
         this.perMillion = perMillion;
         this.total = total;
-    }
-
-    public int getNewDeaths(){
-        return this.newDeaths;
     }
     
     public int getPerMillion(){
