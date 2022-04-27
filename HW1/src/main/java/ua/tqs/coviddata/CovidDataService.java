@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -172,6 +173,7 @@ public class CovidDataService {
     private ResponseEntity<String> getFromCache(URI url) throws IOException, InterruptedException{
         // logger.info("Extract data from cache.");
         ResponseEntity<String> cashedResponse = cache.get(url);
+        System.out.println("Result of cache.get: "+cashedResponse);
         if(cashedResponse==null){
             ResponseEntity<String> APIResponse = getFromAPI(url);
             logger.info("Extracted data from API and added to cache.");

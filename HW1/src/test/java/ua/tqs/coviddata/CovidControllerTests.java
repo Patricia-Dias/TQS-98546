@@ -4,9 +4,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.hamcrest.Matchers.*;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +19,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
 @WebMvcTest(CovidDataController.class)
-public class ControllerTests {
+public class CovidControllerTests {
 
     @Autowired
     private MockMvc mock;

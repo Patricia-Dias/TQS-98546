@@ -32,7 +32,7 @@
 <div class="container">
     <div class="row" style="margin-top: 20px">
         <div class="col-md-4"></div>
-        <div class="col-md-4"><h3 id="airqualityname" style="color: forestgreen">Covid Data</h3></div>
+        <div class="col-md-4"><h3 id="coviddata" style="color: forestgreen">Covid Data</h3></div>
         <div class="col-md-4"></div>
     </div>
     <div class="row" style="margin-top: 20px">
@@ -60,7 +60,7 @@
                 .then((res) => res.json())
                 .then((data) => {
                     let output = `
-                        <ul class="list-group mb-3" id="airqualityList">
+                        <ul class="list-group mb-3" id="covidList">
                           <li class="list-group-item" id="continent">Continent: ${data.continent}</li>
                           <li class="list-group-item" id="country">Country: ${data.country}</li>
                           <li class="list-group-item" id="cases">Cases: ${data.cases}</li>
