@@ -1,13 +1,11 @@
 package ua.tqs.coviddata;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
 import org.springframework.http.ResponseEntity;
 
-import ua.tqs.coviddata.model.Country;
 
 public class Cache {
 	private Logger logger = Logger.getLogger(CovidDataService.class.getName());
@@ -45,15 +43,15 @@ public class Cache {
 		}
 	}
 
-	public Cache(long ttl, int requests, int hits, int misses) {
-		this.timeToLive = ttl * 1000;
-		this.refreshTime = timeToLive+1;
-		this.cache = new HashMap<>();
-		this.cacheItemsLife = new HashMap<>();
-		this.requests= requests;
-		this.hits = hits;
-		this.misses = misses;
-	}
+	// public Cache(long ttl, int requests, int hits, int misses) {
+	// 	this.timeToLive = ttl * 1000;
+	// 	this.refreshTime = timeToLive+1;
+	// 	this.cache = new HashMap<>();
+	// 	this.cacheItemsLife = new HashMap<>();
+	// 	this.requests= requests;
+	// 	this.hits = hits;
+	// 	this.misses = misses;
+	// }
  
 	public void put(URI key, ResponseEntity<String> aPIResponse) {
 		cache.put(key, aPIResponse);
@@ -124,7 +122,7 @@ public class Cache {
 	public double getHitMissRatio(){
 		if (hits-misses==0)
 			return 0;
-		return hits/(hits-misses);
+		return hits/(hits+misses);
 	}
 
 	public int getSize(){

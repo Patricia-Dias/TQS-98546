@@ -28,8 +28,20 @@
     </div>
 </nav>
 
+<form action="reservation.php" method="post">
+    <div class="elem-group inlined">
+      <label for="name">Country</label>
+      <input type="text" id="name" name="visitor_name" placeholder="John Doe" pattern=[A-Z\sa-z]{3,20} required>
+    </div>
+    <div class="elem-group inlined">
+      <label for="checkin-date">Date</label>
+      <input type="date" id="checkin-date" name="checkin" required>
+    </div>
+    <button type="submit">Search</button>
+  </form>
 
-<div class="container">
+
+<!-- <div class="container">
     <div class="row" style="margin-top: 20px">
         <div class="col-md-4"></div>
         <div class="col-md-4"><h3 id="coviddata" style="color: forestgreen">Covid Data</h3></div>
@@ -51,7 +63,7 @@
         <div class="col-md-4"></div>
     </div>
 
-</div>
+</div> -->
 
 <script type="text/javascript">
     window.onload = function() {

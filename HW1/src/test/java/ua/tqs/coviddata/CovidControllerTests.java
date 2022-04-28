@@ -4,8 +4,13 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.hamcrest.Matchers.*;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -52,15 +57,31 @@ public class CovidControllerTests {
         HttpStatus.OK
     );
 
-    private ResponseEntity<Cache> cacheInfo_dummy = new ResponseEntity<>(
-        new Cache(5*60),
-        HttpStatus.OK
-    );
+    private Map<String, Object> cacheInfoMap = new HashMap<>();
+
+    
+
+    private ResponseEntity<Map<String, Object>> cacheInfo_dummy;
 
     private String country = "usa";
     private String country_valueFromAPI = "USA";
     private String day = "2020-05-20";
 
+    @BeforeEach
+    public void setUp(){
+        Cache cache = new Cache(5*60);
+        cacheInfoMap.put("ttl", cache.getTTL());
+        cacheInfoMap.put("requests", cache.getRequests());
+        cacheInfoMap.put("hits", cache.getHits());    
+        cacheInfoMap.put("misses", cache.getMisses());
+        cacheInfoMap.put("hitMissRatio", cache.getHitMissRatio());
+        cacheInfoMap.put("size", cache.getSize());
+        cacheInfo_dummy = new ResponseEntity<>(
+            cacheInfoMap,
+            HttpStatus.OK
+        );
+    }
+    
     @Test
     public void whenGetAllCountries_thenReturnJsonArray() throws Exception {
         when(service.getAllCountries()).thenReturn(allCountries_dummy);
@@ -74,6 +95,8 @@ public class CovidControllerTests {
 		
 		verify(service, times(1)).getAllCountries();
     }
+
+    
 
     @Test
     public void whenGetStatistics_thenReturnJson() throws Exception {
