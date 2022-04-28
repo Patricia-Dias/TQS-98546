@@ -1,6 +1,5 @@
 package ua.tqs.coviddata;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -73,11 +72,9 @@ public class CovidDataService {
     private ResponseEntity<String> getFromCache(URI uri) {
         // logger.info("Extract data from cache.");
         ResponseEntity<String> cashedResponse = cache.get(uri);
-        System.out.println("Result of cache.get: "+cashedResponse);
         if(cashedResponse==null){
             ResponseEntity<String> APIResponse = client.getFromAPI(uri);
             logger.info("Extracted data from API and added to cache.");
-            System.out.println("Response from api:\t"+APIResponse+"\t uri"+uri);
             cache.put(uri, APIResponse);
             return APIResponse;
         }

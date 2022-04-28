@@ -20,7 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 @ExtendWith(MockitoExtension.class)
-public class CovidServiceTests {
+public class CovidServiceTest {
 
     @Mock(lenient = true)
     private Cache mockedCache;
@@ -98,7 +98,6 @@ public class CovidServiceTests {
         when((client.getFromAPI(uri))).thenReturn(coviddata_dummy);
 
         assertThat(service.getCovidStatistics("usa"), is(coviddata_dummy));
-        System.out.println("finished testing not cashe statistics");
 
         verify(mockedCache, times(1)).get(uri);
         verify(client, times(1)).getFromAPI(uri);
@@ -209,7 +208,6 @@ public class CovidServiceTests {
             cacheInfoMap,
             HttpStatus.OK
         );
-        System.out.println(cache_dummy);
 
         assertThat(service.getCacheInfo(), is(cache_dummy));
         verify(mockedCache, times(1)).getTTL();
