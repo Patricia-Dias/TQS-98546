@@ -6,7 +6,7 @@ name: Java CI with Maven
 on:
   push:
     paths:
-    - 'HW1/**'
+    - 'HW1/coviddata/**'
     branches: [ master ]
   pull_request:
     branches: [ master ]
@@ -26,7 +26,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file HW1/pom.xml
+      run: mvn -B package --file HW1/coviddata/pom.xml
 
   sonarcloud:
     name: sonarcloud
@@ -55,5 +55,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Patricia-Dias_TQS-98546 --file HW1/pom.xml
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Patricia-Dias_TQS-98546 --file HW1/coviddata/pom.xml
 
