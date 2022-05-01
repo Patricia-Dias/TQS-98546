@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class CovidaDataAPITest {
+class CovidaDataAPITest {
     @LocalServerPort
     int randomServerPort;
     
