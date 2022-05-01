@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CovidDataService {
-    private final String HOST = "covid-193.p.rapidapi.com";
-    private final String URL = "https://"+HOST;
-    private final String EXCEPTION = "Exception. ";
+    private static final String HOST = "covid-193.p.rapidapi.com";
+    private static final String URL = "https://"+HOST;
+    private static final String EXCEPTION = "Exception. String couldn't be parsed as a URI reference. {0}";
     private Logger logger = Logger.getLogger(CovidDataService.class.getName());
-    private final long ttl = 60*2L;   // 2 minutes
-    private Cache cache = new Cache(ttl);   
+    private static final long TTL= 60*2L;   // 2 minutes
+    private Cache cache = new Cache(TTL);   
     private Client client = new Client();   
 
     public ResponseEntity<String> getAllCountries() {
@@ -28,7 +28,7 @@ public class CovidDataService {
             return getFromCache(uri);
         }
         catch (URISyntaxException e) {
-            logger.log(Level.SEVERE, EXCEPTION+"String couldn't be parsed as a URI reference.", e);
+            logger.log(Level.SEVERE, EXCEPTION, e);
             Thread.currentThread().interrupt();
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -47,7 +47,7 @@ public class CovidDataService {
             return getFromCache(uri);
             
         } catch (URISyntaxException e) {
-            logger.log(Level.SEVERE, EXCEPTION+"String couldn't be parsed as a URI reference.", e);
+            logger.log(Level.SEVERE, EXCEPTION, e);
             Thread.currentThread().interrupt();
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -55,28 +55,27 @@ public class CovidDataService {
 
     public ResponseEntity<String> getCovidHistory(String country, String day) {
         logger.info("service.getCovidInfoCountryAndDate() was called.");
-        String url_str=URL+"/history?country="+country;
+        String urlStr=URL+"/history?country="+country;
         if (day!=null)
-            url_str +=  "&day="+day;
+            urlStr += "&day="+day;
         try {
-            URI uri = new URI(url_str);
+            URI uri = new URI(urlStr);
             return getFromCache(uri);
             
         } catch (URISyntaxException e) {
-            logger.log(Level.SEVERE, EXCEPTION+"String couldn't be parsed as a URI reference.", e);
+            logger.log(Level.SEVERE, EXCEPTION, e);
             Thread.currentThread().interrupt();
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     private ResponseEntity<String> getFromCache(URI uri) {
-        // logger.info("Extract data from cache.");
         ResponseEntity<String> cashedResponse = cache.get(uri);
         if(cashedResponse==null){
-            ResponseEntity<String> APIResponse = client.getFromAPI(uri);
+            ResponseEntity<String> apiResponse = client.getFromAPI(uri);
             logger.info("Extracted data from API and added to cache.");
-            cache.put(uri, APIResponse);
-            return APIResponse;
+            cache.put(uri, apiResponse);
+            return apiResponse;
         }
         logger.info("Extracted data from cache.");
         return cashedResponse;
