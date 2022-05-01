@@ -2,17 +2,18 @@ package ua.tqs.coviddata;
 
 import java.net.URI;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.http.ResponseEntity;
 
 
 public class Cache {
-	private Logger logger = Logger.getLogger(CovidDataService.class.getName());
+	private Logger logger = Logger.getLogger(Cache.class.getName());
     
     private final long timeToLive;
-	private final long refreshTime;
-	private HashMap<URI, ResponseEntity<String>> cache;
+	private HashMap<URI, ResponseEntity<String>> cacheMap;
 	private HashMap<URI, Long> cacheItemsLife;
 	private int requests = 0;
 	private int hits = 0;
@@ -21,52 +22,41 @@ public class Cache {
  
 	public Cache(long ttl) {
 		this.timeToLive = ttl * 1000;
-		this.refreshTime = timeToLive+1;
-		this.cache = new HashMap<>();
+		this.cacheMap = new HashMap<>();
 		this.cacheItemsLife = new HashMap<>();
 		if (timeToLive>0){
-			Thread t = new Thread( new Runnable() {
-				public void run(){
-					while(true){
-						try {
-							Thread.sleep(refreshTime);
-							cleanCashe();
-						} catch (InterruptedException e) {
-							logger.severe("Exception. "+e);;
-						}
+			Runnable runnable = () -> {
+				while(true){
+					try {
+						Thread.sleep(timeToLive);
+					} catch (InterruptedException e) {
+						logger.severe("Exception. "+e);
+						Thread.currentThread().interrupt();
 					}
+					if (cacheMap.size()>0)
+						cleanCashe();
 				}
-
-			});
+			};
+			Thread t = new Thread(runnable);
 			t.setDaemon(true);
 			t.start();
 		}
 	}
-
-	// public Cache(long ttl, int requests, int hits, int misses) {
-	// 	this.timeToLive = ttl * 1000;
-	// 	this.refreshTime = timeToLive+1;
-	// 	this.cache = new HashMap<>();
-	// 	this.cacheItemsLife = new HashMap<>();
-	// 	this.requests= requests;
-	// 	this.hits = hits;
-	// 	this.misses = misses;
-	// }
  
 	public void put(URI key, ResponseEntity<String> aPIResponse) {
-		cache.put(key, aPIResponse);
+		cacheMap.put(key, aPIResponse);
 		cacheItemsLife.put(key, System.currentTimeMillis());
 	}
 	
 	public ResponseEntity<String> get(URI key) {
-		ResponseEntity<String> value = cache.get(key);
+		ResponseEntity<String> value = cacheMap.get(key);
 		requests++;
 
 		if (value == null)
 		{
 			misses++;
 			return null;
-		}	
+		}
 		else {
 			hits++;
 			return value;
@@ -74,14 +64,14 @@ public class Cache {
 	}
  
 	public void remove(URI key) {
-		logger.info("removed key:\t"+key);
-		cache.remove(key);
+		logger.log( Level.INFO, "removed key: {0}",key);
+		cacheMap.remove(key);
 		cacheItemsLife.remove(key);
-		logger.info("Cashe size after cleanup\t"+getSize());
+		logger.log( Level.INFO, "Cashe size after cleanup {0}", getSize());
 	}
  
 	public void emptyCache(){
-		this.cache.clear();
+		this.cacheMap.clear();
 		this.cacheItemsLife.clear();
 		this.requests=0;
 		this.hits=0;
@@ -92,14 +82,14 @@ public class Cache {
 		logger.info("cleanCashe was called");
 		long now = System.currentTimeMillis();
 		
-		for ( URI entry : cache.keySet()){
+		for ( URI entry : cacheMap.keySet()){
 			if (timeToLive<=now-cacheItemsLife.get(entry)){
 				remove(entry);
 			}
 		}
 	}
 
-	public HashMap<URI, Long> cacheItemsLife(){
+	public Map<URI, Long> cacheItemsLife(){
 		return this.cacheItemsLife;
 	}
 
@@ -122,14 +112,14 @@ public class Cache {
 	public double getHitMissRatio(){
 		if (hits-misses==0)
 			return 0;
-		return hits/(hits+misses);
+		return (hits/(hits+misses));
 	}
 
 	public int getSize(){
-		if (cache.size()!=cacheItemsLife.size()){
+		if (cacheMap.size()!=cacheItemsLife.size()){
 			logger.severe("ALERT: The cache map and cacheItemsLife map should have the same size.");
 		}
-		return this.cache.size();
+		return this.cacheMap.size();
 	}
 
 }
