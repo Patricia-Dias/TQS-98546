@@ -8,7 +8,7 @@ public class HTMLController {
     
     private HTMLController(){}
 
-    @GetMapping(value="/")
+    @GetMapping(value="")
     public static String index() {
         return "index";
     }

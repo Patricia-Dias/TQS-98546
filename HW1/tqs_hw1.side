@@ -4,17 +4,24 @@
   "name": "tqs_hw1",
   "url": "http://localhost:8083",
   "tests": [{
-    "id": "7b3e83fa-0b99-47a7-8341-b70c2f41ce90",
+    "id": "44777f1b-d872-497e-8857-7bc92dc49960",
     "name": "coviddata",
     "commands": [{
-      "id": "a97a4592-fa1d-4038-b3b7-dd5b36eeb05a",
+      "id": "4e1627fa-2447-408f-b51d-56bcd1d13195",
       "comment": "",
       "command": "open",
       "target": "/",
       "targets": [],
       "value": ""
     }, {
-      "id": "e1156afc-3334-437f-a8f6-fa397905c37e",
+      "id": "d5784e1a-b3e2-4ade-b1a8-334bdabdaf86",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1007",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c9f7bef3-d717-4e6e-9606-34be60db9c1a",
       "comment": "",
       "command": "click",
       "target": "css=.card:nth-child(1) button",
@@ -25,7 +32,7 @@
       ],
       "value": ""
     }, {
-      "id": "ed0c0455-fd2f-499f-8863-e300d71e0fb0",
+      "id": "abfb5618-6c5e-427e-be27-b02ab615cf31",
       "comment": "",
       "command": "click",
       "target": "id=countryName",
@@ -38,7 +45,7 @@
       ],
       "value": ""
     }, {
-      "id": "2287e018-424f-4372-88f1-9c73e6e5f4cc",
+      "id": "b622982a-8064-4fa1-8ada-fc519a6c2b4a",
       "comment": "",
       "command": "type",
       "target": "id=countryName",
@@ -51,17 +58,7 @@
       ],
       "value": "uk"
     }, {
-      "id": "4a551064-df68-4b4a-a679-9964a360ef7a",
-      "comment": "",
-      "command": "click",
-      "target": "css=.col-md-3",
-      "targets": [
-        ["css=.col-md-3", "css:finder"],
-        ["xpath=//div[2]", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "43b5bab5-fc2e-40c5-a421-7633169ceb8e",
+      "id": "dda504f5-ecb8-4f72-9f80-9c6f0affff44",
       "comment": "",
       "command": "click",
       "target": "id=searchButton",
@@ -74,7 +71,7 @@
       ],
       "value": ""
     }, {
-      "id": "d4dedb4a-7b3d-40fa-ac2f-5c17a0ee8b49",
+      "id": "3d6f1414-732a-4439-a7c1-6a4a22cd797f",
       "comment": "",
       "command": "click",
       "target": "linkText=History",
@@ -89,7 +86,7 @@
       ],
       "value": ""
     }, {
-      "id": "ecbbe942-a159-4088-9be3-0cee214cca78",
+      "id": "8d1e74f2-6c08-48f6-976c-e4434d2c0bd5",
       "comment": "",
       "command": "click",
       "target": "id=countryName",
@@ -102,7 +99,7 @@
       ],
       "value": ""
     }, {
-      "id": "848065de-e1d3-4669-9db4-e67630dbb15a",
+      "id": "121ac450-fed6-4f54-b522-c4a2f0ae56fb",
       "comment": "",
       "command": "type",
       "target": "id=countryName",
@@ -115,46 +112,7 @@
       ],
       "value": "uk"
     }, {
-      "id": "6f67e04d-6c44-4b41-8490-00bda3102f97",
-      "comment": "",
-      "command": "click",
-      "target": "id=date",
-      "targets": [
-        ["id=date", "id"],
-        ["name=date", "name"],
-        ["css=#date", "css:finder"],
-        ["xpath=//input[@id='date']", "xpath:attributes"],
-        ["xpath=//div[2]/input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "48404a74-5837-47ed-afa7-cf9a07c5db4e",
-      "comment": "",
-      "command": "click",
-      "target": "id=date",
-      "targets": [
-        ["id=date", "id"],
-        ["name=date", "name"],
-        ["css=#date", "css:finder"],
-        ["xpath=//input[@id='date']", "xpath:attributes"],
-        ["xpath=//div[2]/input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "55653bfe-8ccb-4559-b9b9-9d6b5c2fd0e1",
-      "comment": "",
-      "command": "type",
-      "target": "id=date",
-      "targets": [
-        ["id=date", "id"],
-        ["name=date", "name"],
-        ["css=#date", "css:finder"],
-        ["xpath=//input[@id='date']", "xpath:attributes"],
-        ["xpath=//div[2]/input", "xpath:position"]
-      ],
-      "value": "2022-02-06"
-    }, {
-      "id": "c046e80d-f70c-4568-bbad-660e4a75f530",
+      "id": "34c122e5-c7bf-4b0d-8ea5-fa0083a1231c",
       "comment": "",
       "command": "click",
       "target": "id=searchButton",
@@ -167,7 +125,46 @@
       ],
       "value": ""
     }, {
-      "id": "d570c82e-6cf1-458c-8f34-499d77eacd29",
+      "id": "9763de82-41ef-4108-9a79-e987a8875fd1",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=date",
+      "targets": [
+        ["id=date", "id"],
+        ["name=date", "name"],
+        ["css=#date", "css:finder"],
+        ["xpath=//input[@id='date']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2121ff6d-8861-4074-8442-11f3e0b47afb",
+      "comment": "",
+      "command": "type",
+      "target": "id=date",
+      "targets": [
+        ["id=date", "id"],
+        ["name=date", "name"],
+        ["css=#date", "css:finder"],
+        ["xpath=//input[@id='date']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2022-02-06"
+    }, {
+      "id": "425f68db-3f0d-4b1f-becf-ff708f96144b",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchButton",
+      "targets": [
+        ["id=searchButton", "id"],
+        ["css=#searchButton", "css:finder"],
+        ["xpath=//button[@id='searchButton']", "xpath:attributes"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0160cf0c-c532-413d-8aec-63682ba8e709",
       "comment": "",
       "command": "close",
       "target": "",
@@ -181,8 +178,8 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["7b3e83fa-0b99-47a7-8341-b70c2f41ce90"]
+    "tests": []
   }],
-  "urls": ["http://localhost:8083/"],
+  "urls": ["http://localhost:8083"],
   "plugins": []
 }
