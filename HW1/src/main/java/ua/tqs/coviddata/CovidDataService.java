@@ -37,13 +37,13 @@ public class CovidDataService {
 
     public ResponseEntity<String> getCovidStatistics(String country)  {
         logger.info("service.getCovidInfo() was called.");
-        String url_str=URL+"/statistics";
+        String urlStr=URL+"/statistics";
         if (country!=null){
             logger.info("country is not null.");
-            url_str += "?country="+ country;
+            urlStr += "?country="+ country;
         }
         try {
-            URI uri = new URI(url_str);
+            URI uri = new URI(urlStr);
             return getFromCache(uri);
             
         } catch (URISyntaxException e) {

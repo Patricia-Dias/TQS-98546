@@ -20,7 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 @ExtendWith(MockitoExtension.class)
-public class CovidServiceTest {
+class CovidServiceTest {
 
     @Mock(lenient = true)
     private Cache mockedCache;
@@ -79,7 +79,7 @@ public class CovidServiceTest {
     private final String url = "https://"+host;
 
     @Test
-    public void whenGetStatisticsAndURIinCache_thenReturnCashedValue() {
+    void whenGetStatisticsAndURIinCache_thenReturnCashedValue() {
         URI uri = URI.create(url+"/statistics?country=usa");
 
         when((mockedCache.get(uri))).thenReturn(coviddata_dummy);
@@ -91,7 +91,7 @@ public class CovidServiceTest {
     }
 
     @Test
-    public void whenGetStatisticsAndURInotInCache_thenReturnApiValue() {
+    void whenGetStatisticsAndURInotInCache_thenReturnApiValue() {
         URI uri = URI.create(url+"/statistics?country=usa");
 
         when((mockedCache.get(uri))).thenReturn(null);
@@ -104,7 +104,7 @@ public class CovidServiceTest {
     }
 
     @Test
-    public void whenGetStatisticsWrong_thenReturnBadRequest() {
+    void whenGetStatisticsWrong_thenReturnBadRequest() {
         URI uri = URI.create(url+"/statistics?country=jkhgfds");
 
         when((mockedCache.get(uri))).thenReturn(badRequest);
@@ -116,7 +116,7 @@ public class CovidServiceTest {
     }
 
     @Test
-    public void whenGetHistoryAndURIinCache_thenReturnCashedValue() {
+    void whenGetHistoryAndURIinCache_thenReturnCashedValue() {
         URI uri = URI.create(url+"/history?country=usa");
 
         when((mockedCache.get(uri))).thenReturn(coviddata_dummy);
@@ -128,7 +128,7 @@ public class CovidServiceTest {
     }
 
     @Test
-    public void whenGetHistoryAndURInotInCache_thenReturnApiValue() {
+    void whenGetHistoryAndURInotInCache_thenReturnApiValue() {
         URI uri = URI.create(url+"/history?country=usa");
 
         when((mockedCache.get(uri))).thenReturn(null);
@@ -141,7 +141,7 @@ public class CovidServiceTest {
     }
 
     @Test
-    public void whenGetHistoryWrong_thenReturnBadRequest() {
+    void whenGetHistoryWrong_thenReturnBadRequest() {
         URI uri = URI.create(url+"/history?country=jkhgfds");
 
         when((mockedCache.get(uri))).thenReturn(badRequest);
@@ -152,7 +152,7 @@ public class CovidServiceTest {
     }
 
     @Test
-    public void whenGetCountriesAndURIinCache_thenReturnCashedValue() {
+    void whenGetCountriesAndURIinCache_thenReturnCashedValue() {
         URI uri = URI.create(url+"/countries");
 
         when((mockedCache.get(uri))).thenReturn(allCountries_dummy);
@@ -164,7 +164,7 @@ public class CovidServiceTest {
     }
 
     @Test
-    public void whenGetCountriesAndURInotInCache_thenReturnApiValue() {
+    void whenGetCountriesAndURInotInCache_thenReturnApiValue() {
         URI uri = URI.create(url+"/countries");
 
         when((mockedCache.get(uri))).thenReturn(null);
@@ -177,7 +177,7 @@ public class CovidServiceTest {
     }
 
     @Test
-    public void whenGetCountriesWrong_thenReturnBadRequest() {
+    void whenGetCountriesWrong_thenReturnBadRequest() {
         URI uri = URI.create(url+"/countries");
 
         when((mockedCache.get(uri))).thenReturn(badRequest);
@@ -188,7 +188,7 @@ public class CovidServiceTest {
     }
 
     @Test
-    public void whenGetCache_thenReturnCasheInfo() {
+    void whenGetCache_thenReturnCasheInfo() {
         when((mockedCache.getTTL())).thenReturn(50L);
         when((mockedCache.getRequests())).thenReturn(3);
         when((mockedCache.getHits())).thenReturn(2);
