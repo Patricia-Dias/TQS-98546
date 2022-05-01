@@ -1,24 +1,24 @@
 package ua.tqs.coviddata;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HTMLController {
     
     private HTMLController(){}
 
-    @RequestMapping(value="/")
+    @GetMapping(value="/")
     public static String index() {
         return "index";
     }
 
-    @RequestMapping(value="/history")
+    @GetMapping(value="/history")
     public static String history(){
         return "history";
     }
 
-    @RequestMapping(value="/statistics")
+    @GetMapping(value="/statistics")
     public static String statistics() {
         return "statistics";
     }
