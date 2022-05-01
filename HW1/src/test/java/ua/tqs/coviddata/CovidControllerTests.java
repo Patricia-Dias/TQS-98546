@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
 @WebMvcTest(CovidDataController.class)
-public class CovidControllerTests {
+class CovidControllerTests {
 
     @Autowired
     private MockMvc mock;
@@ -67,7 +67,7 @@ public class CovidControllerTests {
     private String day = "2020-05-20";
 
     @BeforeEach
-    public void setUp(){
+    void setUp(){
         Cache cache = new Cache(5*60);
         cacheInfoMap.put("ttl", cache.getTTL());
         cacheInfoMap.put("requests", cache.getRequests());
@@ -82,7 +82,7 @@ public class CovidControllerTests {
     }
     
     @Test
-    public void whenGetAllCountries_thenReturnJsonArray() throws Exception {
+    void whenGetAllCountries_thenReturnJsonArray() throws Exception {
         when(service.getAllCountries()).thenReturn(allCountries_dummy);
 
         mock.perform(MockMvcRequestBuilders.get("/api/countries")
@@ -98,7 +98,7 @@ public class CovidControllerTests {
     
 
     @Test
-    public void whenGetStatistics_thenReturnJson() throws Exception {
+    void whenGetStatistics_thenReturnJson() throws Exception {
         when(service.getCovidStatistics(null)).thenReturn(statistics_dummy);
 
         mock.perform(MockMvcRequestBuilders.get("/api/statistics")
@@ -112,7 +112,7 @@ public class CovidControllerTests {
     }
 
     @Test
-    public void whenGetStatisticsWithParamCountry_thenReturnJson() throws Exception {
+    void whenGetStatisticsWithParamCountry_thenReturnJson() throws Exception {
         when(service.getCovidStatistics(country)).thenReturn(usa_statistics_dummy);
 
         mock.perform(MockMvcRequestBuilders.get("/api/statistics?country="+country)
@@ -125,7 +125,7 @@ public class CovidControllerTests {
     }
 
     @Test
-    public void whenGetHistory_thenReturnJson() throws Exception {
+    void whenGetHistory_thenReturnJson() throws Exception {
         when(service.getCovidHistory(country, null)).thenReturn(usa_history_dummy);
 
         mock.perform(MockMvcRequestBuilders.get("/api/history?country="+country)
@@ -139,7 +139,7 @@ public class CovidControllerTests {
     }
 
     @Test
-    public void whenGetHistoryWithParamDay_thenReturnJson() throws Exception {
+    void whenGetHistoryWithParamDay_thenReturnJson() throws Exception {
         when(service.getCovidHistory(country, day)).thenReturn(usa_2020_05_20_history_dummy);
 
         mock.perform(MockMvcRequestBuilders.get("/api/history?country="+country+"&day="+day)
@@ -155,7 +155,7 @@ public class CovidControllerTests {
     }
 
     @Test
-    public void whenGetCacheInfo_thenReturnJsonArray() throws Exception {
+    void whenGetCacheInfo_thenReturnJsonArray() throws Exception {
         when(service.getCacheInfo()).thenReturn(cacheInfo_dummy);
 
         mock.perform(MockMvcRequestBuilders.get("/api/cache")
