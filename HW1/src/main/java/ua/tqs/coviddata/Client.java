@@ -14,11 +14,9 @@ import org.springframework.http.ResponseEntity;
 import java.net.http.HttpClient;
 
 public class Client {
-    private final String HOST = "covid-193.p.rapidapi.com";
-    private final String KEY = "92de5aad8fmsh0c2550784af2ed1p1a93f1jsnbe09eaa6ac3d";
+    private static final String HOST = "covid-193.p.rapidapi.com";
+    private static final String KEY = "92de5aad8fmsh0c2550784af2ed1p1a93f1jsnbe09eaa6ac3d";
     private Logger logger = Logger.getLogger(Client.class.getName());
-
-    public Client(){};
 
     public ResponseEntity<String> getFromAPI(URI uri) {
         logger.info("GET request was called.");
@@ -37,6 +35,7 @@ public class Client {
             return new ResponseEntity<>(responseArray.toString(), HttpStatus.OK);
         } catch (IOException | InterruptedException e) {
             logger.severe("Exception thrown. "+e);
+            Thread.currentThread().interrupt();
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
