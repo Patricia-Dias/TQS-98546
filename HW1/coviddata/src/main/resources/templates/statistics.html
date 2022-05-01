@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Covid Data</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        
+
+        function fetchStats() {
+            fetch('http://localhost:8083/api/statistics')
+                .then((res) => res.json())
+                .then((data) => {
+                    let stats = ``;
+                    data.forEach(country => stats+=`
+                        <ul class="list-group mb-3" id="${country.country}"> 
+                          <li class="list-group-item" id="continent" style="text-align: center">Continent: ${country.continent}</li>
+                          <li class="list-group-item" id="country" style="text-align: center">Country: ${country.country}</li>
+                          <li class="list-group-item" id="population" style="text-align: center">Population: ${country.population}</li>
+                          <li class="list-group-item" id="cases" style="text-align: center"> Cases
+                              <br><br>
+                              <p>New: ${country.cases.new}</p>
+                              <p>Recovered: ${country.cases.recovered}</p>
+                              <p>Total: ${country.cases.total}</p>
+                              <p>Critical: ${country.cases.critical}</p>
+                              <p>Active: ${country.cases.active}</p>
+                          </li>
+                          <li class="list-group-item" id="deaths" style="text-align: center">Deaths
+                              <br><br>
+                              <p>New: ${country.deaths.new}</p>
+                              <p>Total: ${country.cases.total}</p>
+                          </li>
+                          <li class="list-group-item" id="tests" style="text-align: center">Tests
+                              <br><br>
+                              <p>Total: ${country.tests.total}</p>
+                          </li>
+                          <li class="list-group-item" id="day" style="text-align: center">Day: ${country.day}</li>
+                          <li class="list-group-item" id="time" style="text-align: center">Time: ${country.time}</li>
+                      </ul>
+                    `);
+                    document.getElementById('stats').innerHTML = stats;
+                })
+                .catch((err) => console.log((err)));
+        }
+
+        function fetchStatsByCountry(countryName) {
+            console.log("PLACE name\t" + countryName)
+            fetch('http://localhost:8083/api/statistics?country=' + countryName)
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+
+                    let stats = ``;
+                    data.forEach(country => stats+=`
+                        <ul class="list-group mb-3" id="${country.country}"> 
+                          <li class="list-group-item" id="continent" style="text-align: center">Continent: ${country.continent}</li>
+                          <li class="list-group-item" id="country" style="text-align: center">Country: ${country.country}</li>
+                          <li class="list-group-item" id="population" style="text-align: center">Population: ${country.population}</li>
+                          <li class="list-group-item" id="cases" style="text-align: center"> Cases
+                              <br><br>
+                              <p>New: ${country.cases.new}</p>
+                              <p>Recovered: ${country.cases.recovered}</p>
+                              <p>Total: ${country.cases.total}</p>
+                              <p>Critical: ${country.cases.critical}</p>
+                              <p>Active: ${country.cases.active}</p>
+                          </li>
+                          <li class="list-group-item" id="deaths" style="text-align: center">Deaths
+                              <br><br>
+                              <p>New: ${country.deaths.new}</p>
+                              <p>Total: ${country.cases.total}</p>
+                          </li>
+                          <li class="list-group-item" id="tests" style="text-align: center">Tests
+                              <br><br>
+                              <p>Total: ${country.tests.total}</p>
+                          </li>
+                          <li class="list-group-item" id="day" style="text-align: center">Day: ${country.day}</li>
+                          <li class="list-group-item" id="time" style="text-align: center">Time: ${country.time}</li>
+                      </ul>
+                    `);
+                    if (data.length == 0){
+                        console.log("here??")
+                      stats= `
+                      <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="card col-md-8" style="padding-bottom=1000px">
+                          <div class="card-body">
+                            <p class="card-text" style="text-align: center; font-size: large;">No data to show</p>
+                          </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                      </div>
+                      `;
+                      }
+                    document.getElementById('stats').innerHTML = stats;
+                })
+                .catch((err) => console.log((err)));
+        }
+
+        window.onclick = function(){
+    
+        document.getElementById("searchButton").onclick = function () {
+            var countryName = document.getElementById("countryName").value.toLowerCase();
+            console.log(countryName);
+            fetchStatsByCountry(countryName);
+            document.getElementById("suggestions").innerHTML = null;
+        }
+    }
+    </script>
+
+</head>
+<style>
+    .covidbackground {
+  background-image: url("https://images.unsplash.com/photo-1583324113626-70df0f4deaab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80");
+  background-color: black;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+div.elem-group {
+  margin: 20px 0;
+}
+
+div.elem-group.inlined {
+  width: 49%;
+  display: inline-block;
+  margin-left: 1%;
+}
+
+label {
+  display: block;
+  font-family: 'Nanum Gothic';
+  padding-bottom: 10px;
+  font-size: 1.25em;
+}
+
+input, select, textarea {
+  border-radius: 2px;
+  border: 2px solid #777;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  font-family: 'Nanum Gothic';
+  width: 100%;
+  padding: 10px;
+}
+
+div.elem-group.inlined input {
+  width: 95%;
+  display: inline-block;
+}
+
+textarea {
+  height: 250px;
+}
+
+
+button {
+  height: 40px;
+  width: 100px;
+  background: crimson;
+  border: none;
+  color: white;
+  font-size: 1.25em;
+  font-family: 'Nanum Gothic';
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  border: 1px solid black;
+}
+
+.autocomplete-list {
+    left: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.autocomplete-list li {
+    padding: 15px;
+    width: calc(100%-30px);
+}
+.autocomplete-list li:hover {
+    background-color: rgb(212, 211, 211);
+}
+</style>
+<body style="background-color: black;" on onload="fetchStats(); fetchCountries();">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Covid Data</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="statistics">Statistics</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="history">History</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+<div class="covidbackground" style="height:100%; width: 100%;">
+    <div class="container" >
+        <div class="row" style="padding-top: 1%;">
+            <div class="col-md-9">
+                <label for="countryName" style="color: white;">Country</label>
+                <input type="text"  class="form-control mr-sm-2" id="countryName" style="width: 100%;" name="countryName" pattern=[A-Z\sa-z]{3,20}>
+                <ul class="autocomplete-list" id="suggestions"></ul>
+            </div>
+            <div class="col-md-3" style="margin-top: 45px;">
+                <button type="submit" onclick="fetchStatsByCountry()" id="searchButton" style="width: 100%;">Search</button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row" style="height: 100%;">
+            <div class="col-md-2"></div>
+            <div class="col-md-8"><div id="stats"></div></div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+<script>
+    let countries = [];
+    const countryListElement = document.querySelector('#suggestions');
+    const countryInputElement = document.querySelector('#countryName');
+    function fetchCountries(){
+        fetch('http://localhost:8083/api/countries')
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                countries = data;
+                loadData(countries, countryListElement)
+            })
+    }
+
+    function loadData(data, element){
+        if (data){
+            element.innerHTML = "";
+            let innerElement = "";
+            data.forEach((item) => {
+                innerElement += `
+                    <li>${item}</li>
+                `;
+            });
+            element.innerHTML = innerElement;
+        }
+    }
+    function filterData(data, searchText){
+        return data.filter((x) => x.toLowerCase().includes(searchText.toLowerCase()));
+    }
+
+    countryInputElement.addEventListener("input", function() {
+        const filteredData = filterData(countries, countryInputElement.value);
+        loadData(filteredData, countryListElement);
+    })
+
+</script>
+</html>
