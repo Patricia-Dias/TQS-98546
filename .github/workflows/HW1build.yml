@@ -26,7 +26,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file HW1/coviddata/pom.xml
+      run: mvn -B package --file HW1/coviddata/pom.xml -Dtest=!CucumberTest
 
   sonarcloud:
     name: sonarcloud
