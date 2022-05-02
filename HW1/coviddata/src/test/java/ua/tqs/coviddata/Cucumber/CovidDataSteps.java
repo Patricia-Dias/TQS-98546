@@ -7,25 +7,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxBinary;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CovidDataSteps {
     private WebDriver driver;
-    private WebDriverWait wait;
 
     @When("I navigate to {string}")
     public void i_navigate_to(String url) {
         driver = new ChromeDriver();
-        // wait = new WebDriverWait(driver, 10);
         driver.get(url);
     }
     @And("I click Check Statistics")
