@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ua.tqs.coviddata.ControllerTests.CovidControllerTests
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.135 s - in ua.tqs.coviddata.ControllerTests.CovidControllerTests

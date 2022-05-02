@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: ua.tqs.coviddata.ControllerTests.CovidControllerRestAssured
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 4.766 s <<< FAILURE! - in ua.tqs.coviddata.ControllerTests.CovidControllerRestAssured
+whenGetAllCountries_thenReturnJsonArray  Time elapsed: 1.821 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+XML path $ doesn't match.
+Expected: a collection with size <3>
+  Actual: <404 Not FoundNot FoundThe requested URL was not found on this server.nullApache/2.4.41 (Ubuntu) Server at localhost Port 8080>
+
+	at ua.tqs.coviddata.ControllerTests.CovidControllerRestAssured.whenGetAllCountries_thenReturnJsonArray(CovidControllerRestAssured.java:99)
+

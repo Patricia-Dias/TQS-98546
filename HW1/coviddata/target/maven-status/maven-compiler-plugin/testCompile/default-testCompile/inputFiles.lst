@@ -1,0 +1,6 @@
+/home/patricia/GitHubRep/TQS/HW1/coviddata/src/test/java/ua/tqs/coviddata/APITests/CovidaDataAPITests.java
+/home/patricia/GitHubRep/TQS/HW1/coviddata/src/test/java/ua/tqs/coviddata/Cucumber/CovidDataSteps.java
+/home/patricia/GitHubRep/TQS/HW1/coviddata/src/test/java/ua/tqs/coviddata/Cucumber/CucumberTest.java
+/home/patricia/GitHubRep/TQS/HW1/coviddata/src/test/java/ua/tqs/coviddata/ControllerTests/CovidControllerTests.java
+/home/patricia/GitHubRep/TQS/HW1/coviddata/src/test/java/ua/tqs/coviddata/ServiceTests/CovidServiceTest.java
+/home/patricia/GitHubRep/TQS/HW1/coviddata/src/test/java/ua/tqs/coviddata/CacheTests/CacheTests.java
