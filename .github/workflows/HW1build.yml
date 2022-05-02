@@ -25,8 +25,9 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+    - run: (./mvnw spring-boot:run)
     - name: Build with Maven
-      run: mvn -B package --file HW1/coviddata/pom.xml
+      run: (mvn -B package --file HW1/coviddata/pom.xml)
 
   sonarcloud:
     name: sonarcloud
