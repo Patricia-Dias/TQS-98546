@@ -1,14 +1,15 @@
 package ua.tqs.coviddata.Cucumber;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 
-import org.junit.jupiter.api.Test;
+import org.junit.platform.suite.api.ConfigurationParameter;
+import org.junit.platform.suite.api.IncludeEngines;
+import org.junit.platform.suite.api.SelectClasspathResource;
 import org.junit.platform.suite.api.Suite;
 
 @Suite
+@IncludeEngines("cucumber")
+@SelectClasspathResource("ua/tqs/coviddata")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "ua.tqs.coviddata")
 public class CucumberTest {
-    @Test
-    void assert1(){
-        String actual = "true";
-        assertEquals("true", actual);
-    }
+
 }
