@@ -17,6 +17,7 @@ import io.cucumber.java.en.When;
 public class CovidDataSteps {
     private WebDriver driver;
 
+    //test workflow
     @When("I navigate to {string}")
     public void goTo(String url) {
         driver = new ChromeDriver();
