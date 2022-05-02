@@ -18,17 +18,17 @@ public class CovidDataSteps {
     private WebDriver driver;
 
     @When("I navigate to {string}")
-    public void i_navigate_to(String url) {
+    public void goTo(String url) {
         driver = new ChromeDriver();
         driver.get(url);
     }
     @And("I click Check Statistics")
-    public void i_click_check_statistics() {
+    public void checkStatistics() {
         driver.findElement(By.cssSelector(".card:nth-child(1) button")).click();
         
     }
     @Then("I should be able to see a table")
-    public void i_should_be_able_to_see_a_table() {
+    public void table() {
         assertNotNull(driver.findElement(By.id("continent")));
         assertNotNull(driver.findElement(By.id("country")));
         assertNotNull(driver.findElement(By.id("population")));
@@ -40,7 +40,7 @@ public class CovidDataSteps {
     }
 
     @And("I insert country {string}")
-    public void i_insert_country(String country) {
+    public void inputCountry(String country) {
         driver.findElement(By.id("countryName")).click();
         driver.findElement(By.id("countryName")).sendKeys(country);
     }
@@ -51,7 +51,7 @@ public class CovidDataSteps {
     }
 
     @Then("I should be able to see a table with data related to {string}")
-    public void i_should_be_able_to_see_a_table_with_data_related_to(String country) {
+    public void filteredTableByCountry(String country) {
         assertEquals("Country: "+country, driver.findElement(By.id("country")).getText());
     }
 
@@ -63,7 +63,7 @@ public class CovidDataSteps {
 
 
     @And("I insert date {string}")
-    public void i_insert_date(String date) {
+    public void insertDate(String date) {
         String[] dateSplitted = date.split("-", 3); //[yyyy, mm, ddd]
         //needs to be mmddyyyy
         String mmdddyyyyDate = dateSplitted[1]+dateSplitted[2]+dateSplitted[0];
@@ -75,7 +75,7 @@ public class CovidDataSteps {
         driver.findElement(By.id("date")).sendKeys(mmdddyyyyDate);
     }
     @Then("I should be able to see a table with data related to {string} from {string}")
-    public void i_should_be_able_to_see_a_table_with_data_related_to_from(String country, String date) {
+    public void filteredTableByCountryAndDate(String country, String date) {
         assertEquals("Country: "+country, driver.findElement(By.id("country")).getText());
         assertEquals("Day: "+date, driver.findElement(By.id("day")).getText());
     }

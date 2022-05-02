@@ -24,20 +24,13 @@ class CacheTests {
 	private Cache cache;
 	private URI test_uri1 = URI.create("https://www.example.com");
 	private URI test_uri2 = URI.create("https://www.cars.com");
-	// private ArrayList<Country> dummy1 = new ArrayList<>();
-	// private ArrayList<Country> dummy2 = new ArrayList<>();
-	
-	// private ResponseEntity<ArrayList<Country>> test_respEntity1 = new ResponseEntity<>(dummy1, HttpStatus.OK);
-	// private ResponseEntity<ArrayList<Country>> test_respEntity2 = new ResponseEntity<>(dummy2, HttpStatus.OK);
+
 	private ResponseEntity<String> example1 = new ResponseEntity<String>("example1", HttpStatus.OK);
 	private ResponseEntity<String> example2 = new ResponseEntity<String>("example2", HttpStatus.OK);
 
 	@BeforeEach
 	void setUp(){
 		cache = new Cache(ttl);
-		// dummy1.add(new Country("continent", "country", 250, new Cases(25, 562, 3, 50, 8, 35), new Deaths(8, 1, 90), new Tests(80, 180), Date.valueOf("2020-04-20"), "time"));
-		// dummy1.add(new Country("hello", "wow", 250, new Cases(25, 562, 3, 50, 8, 35), new Deaths(8, 1, 90), new Tests(80, 180), Date.valueOf("2022-04-20"), "time2"));
-		// dummy2.add(new Country("hello", "wow", 250, new Cases(25, 562, 3, 50, 8, 35), new Deaths(8, 1, 90), new Tests(80, 180), Date.valueOf("2022-04-20"), "time350"));
 	}
 
 	@AfterEach
@@ -63,7 +56,7 @@ class CacheTests {
 		assertThat(cache.getSize(), is(2));
 		assertThat(cache.cacheItemsLife().size(), is(2));
 
-		cache.remove(test_uri1);
+		cache.delete(test_uri1);
 		assertThat(cache.getSize(), is(1));
 		assertThat(cache.cacheItemsLife().size(), is(1));
 	}

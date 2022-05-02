@@ -1,6 +1,7 @@
 package ua.tqs.coviddata;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -63,8 +64,8 @@ public class Cache {
 		}
 	}
  
-	public void remove(URI key) {
-		logger.log( Level.INFO, "removed key: {0}",key);
+	public void delete(URI key) {
+		logger.log( Level.INFO, "removed key: {0}", key);
 		cacheMap.remove(key);
 		cacheItemsLife.remove(key);
 		logger.log( Level.INFO, "Cashe size after cleanup {0}", getSize());
@@ -81,12 +82,15 @@ public class Cache {
 	public void cleanCashe(){
 		logger.info("cleanCashe was called");
 		long now = System.currentTimeMillis();
-		
+		ArrayList<URI> keysToBeDeleted= new ArrayList<>();
+
 		for ( URI entry : cacheMap.keySet()){
 			if (timeToLive<=now-cacheItemsLife.get(entry)){
-				remove(entry);
+				keysToBeDeleted.add(entry);
 			}
 		}
+		for (URI uri : keysToBeDeleted)
+			delete(uri);
 	}
 
 	public Map<URI, Long> cacheItemsLife(){
