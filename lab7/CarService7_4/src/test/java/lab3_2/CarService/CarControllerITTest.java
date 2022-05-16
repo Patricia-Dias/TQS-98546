@@ -33,9 +33,9 @@ import java.util.Arrays;
 
 @Testcontainers
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@TestPropertySource(locations = "spring.jpa.hibernate.ddl-auto=create")
+@TestPropertySource(properties = "spring.jpa.hibernate.ddl-auto=create")
 @AutoConfigureMockMvc
-public class CarControllerTestIT {
+public class CarControllerITTest {
     @Container
 	public static PostgreSQLContainer container = new PostgreSQLContainer("postgres:12")
 		.withUsername("duke")
@@ -80,11 +80,12 @@ public class CarControllerTestIT {
 
         List<Car> cars = Arrays.asList(car1, car2);
 
+        RestAssuredMockMvc.mockMvc(mvc);
         RestAssuredMockMvc.given()
             .header("Content-type", "application/json")
             .and().body(cars)
             .and().get("/api/cars")
-            .then().statusCode(201)
+            .then().statusCode(200)
             .and().body("maker", hasItems(car1.getMaker(), car2.getMaker()));
 
     }
